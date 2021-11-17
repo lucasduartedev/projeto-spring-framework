@@ -4,18 +4,41 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "vendas")
 public class Venda implements Serializable {
 
 	private static final long serialVersionUID = 7892320012192777937L;
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "venda_id")
 	private Long id;
 	
+	@ManyToMany
+	@JoinTable(name = "venda_produto")
 	private List<Produto> produtos;
 	
+	@OneToOne
+	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 	
+	@Column(name = "data_Venda")
 	private Date dataVenda;
-	
+
+	@OneToOne
+	@JoinColumn(name = "entrega_id")
 	private Entrega entrega;
 	
 //	Construtores

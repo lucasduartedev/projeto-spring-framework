@@ -3,14 +3,28 @@ package com.projeto.models;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "entregas")
 public class Entrega implements Serializable {
 
 	private static final long serialVersionUID = -2458129009799710655L;
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "entrega_id")
 	private Long id;
 	
+	@Column(name = "data_saida")
 	private Date dataSaida;
 	
+	@Column(name = "data_entrega")
 	private Date dataEntrega;
 	
 //	Construtores

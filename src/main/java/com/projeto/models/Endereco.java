@@ -2,12 +2,25 @@ package com.projeto.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "enderecos")
 public class Endereco implements Serializable {
 	
 	private static final long serialVersionUID = -6320893457953319910L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "endereco_id")
 	private Long id;
 	
+	@Column(name = "cep")
 	private String cep;
 	
 //	Construtores
