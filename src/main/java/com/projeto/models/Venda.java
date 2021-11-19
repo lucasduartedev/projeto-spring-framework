@@ -2,7 +2,7 @@ package com.projeto.models;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -26,9 +25,8 @@ public class Venda implements Serializable {
 	@Column(name = "venda_id")
 	private Long id;
 	
-	@ManyToMany
-	@JoinTable(name = "venda_produto")
-	private List<Produto> produtos;
+	@ManyToMany(mappedBy = "vendas")
+	private Set<Produto> produtos;
 	
 	@OneToOne
 	@JoinColumn(name = "id_cliente")
@@ -45,14 +43,6 @@ public class Venda implements Serializable {
 	public Venda() {
 	}
 
-	public Venda(List<Produto> produtos, Cliente cliente, Date dataVenda, Entrega entrega) {
-		super();
-		this.produtos = produtos;
-		this.cliente = cliente;
-		this.dataVenda = dataVenda;
-		this.entrega = entrega;
-	}
-
 //	Getters & Setters
 	public Long getId() {
 		return id;
@@ -62,11 +52,11 @@ public class Venda implements Serializable {
 		this.id = id;
 	}
 
-	public List<Produto> getProdutos() {
+	public Set<Produto> getProdutos() {
 		return produtos;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
+	public void setProdutos(Set<Produto> produtos) {
 		this.produtos = produtos;
 	}
 

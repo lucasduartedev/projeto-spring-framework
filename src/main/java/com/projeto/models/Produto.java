@@ -1,13 +1,15 @@
 package com.projeto.models;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -31,18 +33,16 @@ public class Produto implements Serializable {
 	@Column(name = "descricao")
 	private String descricao;
 
-	@ManyToMany(mappedBy = "produtos")
-	private List<Venda> venda;
+	@ManyToMany
+	@JoinTable(
+			name = "produtos_vendidos",
+			joinColumns = @JoinColumn(name = "produto_id"),
+			inverseJoinColumns = @JoinColumn(name = "venda_id")
+			)
+	private Set<Venda> vendas;
 
 //	Construtores
 	public Produto() {
-	}
-
-	public Produto(String nome, double preco, String descricao) {
-		super();
-		this.nome = nome;
-		this.preco = preco;
-		this.descricao = descricao;
 	}
 
 //	Getters & Setters
@@ -78,12 +78,12 @@ public class Produto implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public List<Venda> getVenda() {
-		return venda;
+	public Set<Venda> getVenda() {
+		return vendas;
 	}
 
-	public void setVenda(List<Venda> venda) {
-		this.venda = venda;
+	public void setVenda(Set<Venda> vendas) {
+		this.vendas = vendas;
 	}
 
 	public static long getSerialversionuid() {

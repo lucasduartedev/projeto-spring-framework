@@ -13,6 +13,9 @@
 		<class>com.projeto.models.Entrega</class>
 		<class>com.projeto.models.Produto</class>
 		<class>com.projeto.models.Venda</class>
+		
+		<class>com.projeto.models.apagar.Cachorro</class>
+		<class>com.projeto.models.apagar.Pessoa</class>		
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
